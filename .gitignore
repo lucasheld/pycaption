@@ -30,3 +30,6 @@ pip-log.txt
 
 # Sphinx documentation build
 docs/_build
+
+# JetBrains
+.idea

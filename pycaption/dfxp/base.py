@@ -55,7 +55,7 @@ class DFXPReader(BaseReader):
         self.nodes = []
 
     def detect(self, content):
-        if u'</tt>' in content.lower():
+        if u'</tt>' in content.lower() or u'</tt:tt>' in content.lower():
             return True
         else:
             return False
@@ -64,6 +64,7 @@ class DFXPReader(BaseReader):
         if type(content) != unicode:
             raise InvalidInputError(u'The content is not a unicode string.')
 
+        content = content.replace(u"tt:", u"")
         dfxp_document = self._get_dfxp_parser_class()(
             content, read_invalid_positioning=self.read_invalid_positioning,
             ignore_layout=self.ignore_layout)
